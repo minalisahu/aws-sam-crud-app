@@ -55,8 +55,50 @@ This project currently uses only built-in libraries. If you add any external dep
 
 ```bash
 sam build
----
 
 ```
+---
+
+### 3. 🧪 Run Locally
+
+Start the local API using SAM:
+
+```bash
+sam local start-api
+You can now send requests to:
+http://localhost:3000/items
+
+```
+
+
+## 📤 Deployment to AWS
+
+To deploy the application to your AWS account, run the following command:
+
+```bash
+sam deploy --guided
+
+
+## 📫 Sample cURL Commands
+
+### ✅ Create an item (POST)
+```bash
+curl -X POST http://localhost:3000/items \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Notebook", "description": "A ruled notebook with 100 pages"}'
+
+
+### ✅ Get all items (GET)
+curl http://localhost:3000/item
+
+### ✅Update an item (PUT)
+curl -X PUT http://localhost:3000/items/{id} \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Updated Name", "description": "Updated Description"}'
+
+### ✅ Delete an item (DELETE)
+curl -X DELETE http://localhost:3000/items/{id}
+
+
 
 
