@@ -1,4 +1,6 @@
+# using the CloudFormation format that was introduced on September 9, 2010.
 AWSTemplateFormatVersion: '2010-09-09'  # CloudFormation template version
+#I'm using the AWS Serverless transform that was released on October 31, 2016.
 Transform: AWS::Serverless-2016-10-31   # Use SAM (Serverless Application Model)
 Description: >
   CRUD App using Python 3.12, SAM, DynamoDB
