@@ -1,0 +1,68 @@
+AWSTemplateFormatVersion: '2010-09-09'  # CloudFormation template version
+Transform: AWS::Serverless-2016-10-31   # Use SAM (Serverless Application Model)
+Description: >
+  CRUD App using Python 3.12, SAM, DynamoDB
+
+# Default properties applied to all Lambda functions
+Globals:
+  Function:
+    Timeout: 5                       # Max time Lambda can run (in seconds)
+    Runtime: python3.12              # Python runtime to use
+    Architectures:
+      - x86_64                       # Architecture (most common and default)
+
+Resources:
+  # Define a DynamoDB table to store our items
+  ItemsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ItemsTable         # Name of the table in AWS
+      AttributeDefinitions:
+        - AttributeName: id         # Primary key attribute name
+          AttributeType: S          # Type 'S' = String
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH             # Hash key = Primary key
+      BillingMode: PAY_PER_REQUEST  # Pay only for what you use (no capacity setup needed)
+
+  # Define a Lambda function that handles all CRUD logic
+  CrudFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: Crud-App-New
+      CodeUri: hello_world/         # Folder with your Lambda code
+      Handler: app.lambda_handler   # Entry point: app.py → lambda_handler function
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ItemsTable  # Pass table name to the Lambda function as env var
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ItemsTable  # Give Lambda permission to access the table (CRUD)
+      Events:
+        # Define REST API endpoints and link them to the Lambda function
+        GetItems:
+          Type: Api
+          Properties:
+            Path: /items           # GET /items → retrieve all items
+            Method: GET
+        CreateItem:
+          Type: Api
+          Properties:
+            Path: /items           # POST /items → create a new item
+            Method: POST
+        UpdateItem:
+          Type: Api
+          Properties:
+            Path: /items/{id}      # PUT /items/{id} → update item by ID
+            Method: PUT
+        DeleteItem:
+          Type: Api
+          Properties:
+            Path: /items/{id}      # DELETE /items/{id} → delete item by ID
+            Method: DELETE
+
+Outputs:
+  # This gives you the API Gateway endpoint URL after deployment
+  ApiUrl:
+    Description: "API Gateway endpoint"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"

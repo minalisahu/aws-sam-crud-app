@@ -1,0 +1,39 @@
+version = 0.1
+
+[default.global.parameters]
+stack_name = "crud-app-stack"
+region = "ap-south-1"
+
+[default.build.parameters]
+cached = true
+parallel = true
+
+[default.validate.parameters]
+lint = true
+
+[default.deploy.parameters]
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+resolve_s3 = true
+stack_name = "crud-app-stack"
+s3_prefix = "crud-app-stack"
+region = "ap-south-1"
+image_repositories = [ ]
+
+[default.package.parameters]
+resolve_s3 = true
+
+[default.sync.parameters]
+watch = false
+template_file = "/Users/minalisahu/Sites/LearningSam/crud-app-new/template.yaml"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-l3tenogqu1hq"
+stack_name = "crud-app-stack"
+dependency_layer = false
+build_in_source = true
+code = true
+
+[default.local_start_api.parameters]
+warm_containers = "EAGER"
+
+[default.local_start_lambda.parameters]
+warm_containers = "EAGER"
