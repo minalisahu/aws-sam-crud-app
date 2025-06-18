@@ -33,10 +33,11 @@ crud-app-new/
 
 
 
-
 ---
 
 ## 🔧 Prerequisites
+
+Make sure the following tools are installed on your system:
 
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 - [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html)
@@ -47,53 +48,15 @@ crud-app-new/
 ## 🛠️ Setup and Run Locally
 
 ### 1. Install dependencies (if any)
-This app currently uses only built-in libraries. If you add dependencies, use a `requirements.txt`.
+
+This project currently uses only built-in libraries. If you add any external dependencies, include them in a `requirements.txt` file.
 
 ### 2. Build the project
 
 ```bash
 sam build
-
 ---
 
-## 🛠️ Setup and Run Locally
+```
 
-### 1. Install dependencies (if any)
-This app currently uses only built-in libraries. If you add dependencies, use a `requirements.txt`.
-
-### 2. Build the project
-
-```bash
-sam build
-
-
-### 3. 🧪 Run Locally
-
-Start the local API using SAM:
-
-```bash
-sam local start-api
-
-
-📫 Sample cURL Commands
-✅ Create an item (POST)
-
-curl -X POST http://localhost:3000/items \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Notebook", "description": "A ruled notebook with 100 pages"}'
-📋 Get all items (GET)
-
-curl http://localhost:3000/items
-🔁 Update an item (PUT)
-
-curl -X PUT http://localhost:3000/items/{id} \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Updated Name", "description": "Updated Description"}'
-❌ Delete an item (DELETE)
-
-curl -X DELETE http://localhost:3000/items/{id}
-📤 Deployment to AWS
-To deploy the application to your AWS account:
-
-sam deploy --guided
 
