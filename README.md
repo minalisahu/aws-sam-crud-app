@@ -57,8 +57,16 @@ This project currently uses only built-in libraries. If you add any external dep
 sam build
 
 ```
----
 
+## 📤 Deployment to AWS
+
+To deploy the application to your AWS account, run the following command:
+
+```bash
+sam deploy --guided
+```
+
+---
 ### 3. 🧪 Run Locally
 
 Start the local API using SAM:
@@ -69,14 +77,6 @@ You can now send requests to:
 http://localhost:3000/items
 
 ```
-
-
-## 📤 Deployment to AWS
-
-To deploy the application to your AWS account, run the following command:
-
-```bash
-sam deploy --guided
 
 
 ## 📫 Sample cURL Commands
