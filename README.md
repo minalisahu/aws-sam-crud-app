@@ -67,7 +67,7 @@ sam deploy --guided
 ```
 
 ---
-### 3. 🧪 Run Locally
+### 🧪 Run Locally
 
 Start the local API using SAM:
 
@@ -80,9 +80,9 @@ http://localhost:3000/items
 
 
 ## 📫 Sample cURL Commands
-
-### ✅ Create an item (POST)
 ```bash
+### ✅ Create an item (POST)
+
 curl -X POST http://localhost:3000/items \
   -H "Content-Type: application/json" \
   -d '{"name": "Notebook", "description": "A ruled notebook with 100 pages"}'
